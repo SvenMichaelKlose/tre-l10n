@@ -1,5 +1,7 @@
 (var *l10ns* (make-hash-table :test #'eq))
 (var *l10n-package* nil)
+(unless (defined? *l10n-text-filter*)
+  (var *l10n-text-filter* #'identity))
 
 (@ (i *available-languages*)
   (= (href *l10ns* i) (make-hash-table :test #'eq)))
@@ -25,7 +27,7 @@
   (href (href *l10ns* *language*) id))
 
 (fn call-localiser (id &rest args)
-  (fast-typography (apply (get-localiser id) args)))
+  (funcall *l10n-text-filter* (apply (get-localiser id) args)))
 
 (defmacro l10n (id &rest args)
   (print-definition `(l10n ,id))
