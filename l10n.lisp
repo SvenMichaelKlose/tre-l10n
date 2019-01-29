@@ -1,7 +1,7 @@
 (var *l10ns* (make-hash-table :test #'eq))
 (var *l10n-package* nil)
-(unless (defined? *l10n-text-filter*)
-  (var *l10n-text-filter* #'identity))
+,(unless (transpiler-defined-variable *transpiler* '*l10n-text-filter*)
+   '(var *l10n-text-filter* #'identity))
 
 (@ (i *available-languages*)
   (= (href *l10ns* i) (make-hash-table :test #'eq)))
