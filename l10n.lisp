@@ -19,9 +19,7 @@
     (& (not (eq lang 'en))
        (not (href (href *compile-time-l10ns* 'en) !))
        (error "Localisation ~A ~A is not in EN." lang !))
-    `{(& (href (href *l10ns* ',lang) ',!)
-         (error "Localisation ~A ~A is already defined." ',lang ',!))
-      (= (href (href *l10ns* ',lang) ',!) #'(,args ,@body))}))
+    `(= (href (href *l10ns* ',lang) ',!) #'(,args ,@body))))
 
 (fn get-localiser (id)
   (href (href *l10ns* *language*) id))
