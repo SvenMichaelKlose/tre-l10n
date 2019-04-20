@@ -7,11 +7,11 @@
 
 (defmacro in-l10n (package)
   (print-definition `(in-l10n ,package))
-  (= *l10n-package* package)
+  (= *l10n-package* (make-keyword package))
   nil)
 
 (fn packaged-l10n-id (x)
-  ($ *l10n-package* "-" x))
+  (make-keyword ($ *l10n-package* "-" x)))
 
 (fn check-l10ns ()
   (@ (i *available-languages*)
