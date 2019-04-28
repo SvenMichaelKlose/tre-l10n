@@ -30,7 +30,6 @@
   (funcall *l10n-text-filter* (apply (get-localiser id) args)))
 
 (defmacro l10n (id &rest args)
-  (print-definition `(l10n ,id))
   (= id (make-keyword id))
   (| *l10n-package*
      (error "*L10N-PACKAGE* is unset."))
